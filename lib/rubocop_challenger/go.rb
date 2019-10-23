@@ -35,7 +35,6 @@ module RubocopChallenger
     # @raise [Errors::NoAutoCorrectableRule]
     #   Raises if there is no auto correctable rule in ".rubocop_todo.yml"
     def exec
-      update_rubocop!
       before_version, after_version = regenerate_rubocop_todo!
       corrected_rule = rubocop_challenge!(before_version, after_version)
       regenerate_rubocop_todo!
@@ -61,14 +60,6 @@ module RubocopChallenger
         project_column_name: options[:project_column_name],
         project_id: options[:project_id]
       }
-    end
-
-    # Executes `$ bundle update` for the rubocop and the associated gems
-    def update_rubocop!
-      bundler = Bundler::Command.new
-      pull_request.commit! ':police_car: $ bundle update rubocop' do
-        bundler.update(*RSPEC_GEMS)
-      end
     end
 
     # Re-generate .rubocop_todo.yml and run git commit.
