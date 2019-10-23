@@ -16,7 +16,6 @@ require 'rubocop_challenger/rubocop/yardoc'
 require 'rubocop_challenger/pull_request'
 require 'rubocop_challenger/go'
 require 'rubocop_challenger/cli'
-require 'rubocop_challenger/bundler/command'
 require 'rubocop_challenger/github/pr_template'
 
 module RubocopChallenger
